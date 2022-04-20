@@ -6,9 +6,11 @@ const {
 	update,
 	destroy,
 } = require("../controllers/categoryController"); // inisiasi object controller
+const validate = require("../middleware/validate");
+const { createCategoryRules } = require("../validators/rule");
 
 router.get("/list", list); // route untuk endpoint list
-router.post("/create", create); // route untuk endpoint create
+router.post("/create", validate(createCategoryRules), create); // route untuk endpoint create
 router.put("/update", update); // route untuk endpoint update
 router.delete("/destroy", destroy); // route untuk endpoint destroy
 
